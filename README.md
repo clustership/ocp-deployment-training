@@ -22,5 +22,3 @@ cd 02-resources
 
 And follow instructions in the README file.
 
-## Deployment with helm chart
-
