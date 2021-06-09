@@ -27,6 +27,7 @@ spec:
       serviceAccountName: {{ include "vue-todos.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      runtimeClassName: kata
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
