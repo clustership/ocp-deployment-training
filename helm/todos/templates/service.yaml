@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "vue-todos.fullname" . }}
+  labels:
+    {{- include "vue-todos.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http-{{ .Values.containerPort }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "vue-todos.selectorLabels" . | nindent 4 }}

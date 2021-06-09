@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: todos-vue-todos
+  labels:
+    app.kubernetes.io/name: vue-todos
+    app.kubernetes.io/instance: todos
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todos-vue-todos
+  labels:
+    app.kubernetes.io/name: vue-todos
+    app.kubernetes.io/instance: todos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: vue-todos
+      app.kubernetes.io/instance: todos
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vue-todos
+        app.kubernetes.io/instance: todos
+    spec:
+      serviceAccountName: todos-vue-todos
+      securityContext:
+        {}
+      containers:
+        - name: vue-todos
+          securityContext:
+            {}
+          image: "quay.io/xymox/vue-todos:01-spa"
+          imagePullPolicy: Always
+          ports:
+            - name: http-8080
+              containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http-8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http-8080
+          resources:
+            {}
