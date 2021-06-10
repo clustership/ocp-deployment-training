@@ -6,6 +6,15 @@ This repository contains resources to train on basic OpenShift application deplo
 
 You must have OpenShift client (oc) and helm installed on your laptop to follow this training.
 
+## Setup
+
+Clone the current repository:
+
+```bash
+git clone https://github.com/clustership/ocp-deployment-training.git
+cd ocp-deployment-training
+```
+
 ## Deployment with static resources
 
 ```bash
